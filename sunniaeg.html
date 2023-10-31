@@ -4,20 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Sünniaeg ja vanus</title>
 </head>
 
-<body>
-    <div class="container mt-5">
-        <h2>Sünniaeg ja vanus</h2>
-        <div>
-            <input type="text" id="isikukood" placeholder="Isikukood">
-            <button onclick="LisaIsik()">Lisa</button>
-        </div>
-        <ul id="isikud-list"></ul>
+<body class="container mt-5">
+    <h2>Sünniaeg ja vanus</h2>
+    <div class="mb-3">
+        <input type="text" class="form-control" id="isikukood" placeholder="Isikukood">
+        <button class="btn btn-primary mt-2" onclick="LisaIsik()">Lisa</button>
     </div>
+    <ul class="list-group" id="isikud-list"></ul>
     <script src="sunniaeg.js"></script>
 </body>
 

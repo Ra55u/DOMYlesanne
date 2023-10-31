@@ -8,7 +8,7 @@ const opilased = [
     { nimi: "Eva", tulemused: [4.8, 4.9, 4.7] },
     { nimi: "Marten", tulemused: [4.7, 4.6, 4.8] },
     { nimi: "Kairi", tulemused: [5.1, 5.3, 5.0] },
-    { nimi: "Rasmus", tulemused: [4.4, 4.5, 4.3] },
+    { nimi: "Rasmus", tulemused: [4.4, 4.5, 4.3] }
 ];
 
 function LisaTulemus() {
@@ -17,7 +17,7 @@ function LisaTulemus() {
     const opilane = LeiaOpilane(opilaseNimi);
     if (opilane) {
         opilane.tulemused.push(tulemus);
-        KuvaOpilasteTulemused();
+        KuvaOpilasteTulemused(opilane);
     } else {
         alert("Õpilast ei leitud!");
     }
@@ -29,14 +29,23 @@ function LeiaOpilane(nimi) {
     });
 }
 
-function KuvaOpilasteTulemused() {
+function KuvaOpilasteTulemused(opilane) {
     const opilasteTulemusedListElement = document.getElementById("opilaste-tulemused-list");
     opilasteTulemusedListElement.innerHTML = "";
-    opilased.forEach(function(opilane) {
-        const parimTulemus = opilane.tulemused.length > 0 ? Math.max(...opilane.tulemused) : 0;
+
+    if (opilane) {
+        const tulemused = opilane.tulemused.join(", ");
+        const parimTulemus = Math.max(...opilane.tulemused);
         const keskmineTulemus = (opilane.tulemused.reduce((a, b) => a + b, 0) / opilane.tulemused.length).toFixed(2);
+
         const listItem = document.createElement("li");
-        listItem.textContent = `${opilane.nimi} - Tulemused: ${opilane.tulemused.join(", ")}, Parim: ${parimTulemus}, Keskmine: ${keskmineTulemus}`;
+        listItem.className = "list-group-item";
+        listItem.textContent = `${opilane.nimi} - Tulemused: ${tulemused}, Parim: ${parimTulemus}, Keskmine: ${keskmineTulemus}`;
         opilasteTulemusedListElement.appendChild(listItem);
-    });
+    } else {
+        const listItem = document.createElement("li");
+        listItem.className = "list-group-item";
+        listItem.textContent = "Õpilast ei leitud!";
+        opilasteTulemusedListElement.appendChild(listItem);
+    }
 }
